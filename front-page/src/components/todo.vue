@@ -3,22 +3,35 @@
     <!-- 头部模块 -->
     <nav>
       <!-- 当用户浏览车窗口尺寸小于40em时候，显示手机端的菜单图标 -->
-      <div class="nav-group" @click="$store.dispatch('updateMenu')" v-show="!isUpdate">
+      <div class="form list-edit-form" v-show="isUpdate">
+        <!-- 当用户点击标题进入修改状态，就显示当前内容可以修改 -->
+        <input type="text" v-model="todo.title" @keyup.enter="updateTitle" :disabled="todo.locked">
+        <div class="nav-group right">
+          <a class="nav-item" @click="isUpdate = false">
+            <span class="icon-close">
+            </span>
+          </a>
+        </div>
+      </div>
 
+      <div class="nav-group" @click="$store.dispatch('updateMenu')" v-show="!isUpdate">
+        <!-- 在菜单的图标下面添加updateMenu时间，他可以直接调用vuex actions.js里面的updateMenu方法 -->
         <a class="nav-item">
           <span class="icon-list-unordered">
           </span>
         </a>
       </div>
       <!-- 显示标题和数字模块 -->
-      <h1 class="title-page">
-        <span class="title-wrapper">{{todo.title}}</span>  <!-- title:标题 绑定标题 -->
-        <span class="count-list">{{todo.count || 0}}</span><!-- count:数量 绑定代办单项熟练-->
+      <h1 class="title-page" v-show="!isUpdate" @click="isUpdate = true">
+        <span class="title-wrapper">{{todo.title}}</span>
+        <!-- title:标题 绑定标题 -->
+        <span class="count-list">{{todo.count || 0}}</span>
+        <!-- count:数量 绑定代办单项熟练-->
       </h1>
       <!-- 右边显示删除图标和锁定图标的模块 -->
       <div class="nav-group right">
         <div class="options-web">
-          <a class=" nav-item">
+          <a class=" nav-item" @click="onlock">
             <!-- cicon-lock锁定的图标
             icon-unlock：非锁定的图标
             -->
@@ -26,7 +39,7 @@
             <span class="icon-unlock" v-else>
             </span>
           </a>
-          <a class=" nav-item">
+          <a class=" nav-item" @click="onDelete">
             <span class="icon-trash">
             </span>
           </a>
@@ -49,7 +62,7 @@
 </template>
 <script>
   import item from './item';
-  import {addRecord, getTodo} from "../api/api";
+  import {editTodo, addRecord, getTodo} from "../api/api";
 
   export default {
     data() {
@@ -58,7 +71,8 @@
           id: 1,
           title: '星期一', //标题
           count: 12, //数量
-          locked: false //是否绑定
+          locked: false, //是否绑定
+          isDelete: false
         },
         items: [  //代办单项列表
         ],
@@ -77,8 +91,10 @@
         // 获取到$route下的param下的id
         const ID = this.$route.params.id;
         getTodo({id: ID}).then(res => {
+          console.log("request请求得到的数据");
+          console.log(res.data.data.todo);
           let {
-            id, title, count, isDelete, locked, record
+            id, title, count, isDelete, locked
           } = res.data.data.todo;
           let records = res.data.data.records;
           this.todo = {
@@ -89,7 +105,7 @@
             locked: locked
           };
           this.items = records;
-          console.log(this.items);
+          console.log(this.todo);
         })
       },
       onAdd() {
@@ -98,6 +114,26 @@
           this.text = '';
           this.init();
         });
+      },
+      updateTodo() {
+        let _this = this;
+        editTodo({
+          todo: this.todo
+        }).then(data => {
+          _this.$store.dispatch('getTodo');
+        });
+      },
+      updateTitle() {
+        this.updateTodo();
+        this.isUpdate = false;
+      },
+      onlock() {
+        this.todo.locked = !this.todo.locked;
+        this.updateTodo();
+      },
+      onDelete() {
+        this.todo.isDelete = true;
+        this.updateTodo();
       }
     },
     watch: {

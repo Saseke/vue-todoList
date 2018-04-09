@@ -9,17 +9,17 @@ public class Todo implements Serializable {
 
     private Integer count;
 
-    private Byte isdelete;
+    private Boolean isDelete;
 
-    private Byte locked;
+    private Boolean locked;
 
     private static final long serialVersionUID = 1L;
 
-    public Todo(Integer id, String title, Integer count, Byte isdelete, Byte locked) {
+    public Todo(Integer id, String title, Integer count, Boolean isDelete, Boolean locked) {
         this.id = id;
         this.title = title;
         this.count = count;
-        this.isdelete = isdelete;
+        this.isDelete = isDelete;
         this.locked = locked;
     }
 
@@ -51,19 +51,19 @@ public class Todo implements Serializable {
         this.count = count;
     }
 
-    public Byte getIsdelete() {
-        return isdelete;
+    public Boolean getIsDelete() {
+        return isDelete;
     }
 
-    public void setIsdelete(Byte isdelete) {
-        this.isdelete = isdelete;
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
-    public Byte getLocked() {
+    public Boolean getLocked() {
         return locked;
     }
 
-    public void setLocked(Byte locked) {
+    public void setLocked(Boolean locked) {
         this.locked = locked;
     }
 
@@ -82,7 +82,7 @@ public class Todo implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getCount() == null ? other.getCount() == null : this.getCount().equals(other.getCount()))
-            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()))
+            && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()))
             && (this.getLocked() == null ? other.getLocked() == null : this.getLocked().equals(other.getLocked()));
     }
 
@@ -93,7 +93,7 @@ public class Todo implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getCount() == null) ? 0 : getCount().hashCode());
-        result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
+        result = prime * result + ((getIsDelete() == null) ? 0 : getIsDelete().hashCode());
         result = prime * result + ((getLocked() == null) ? 0 : getLocked().hashCode());
         return result;
     }
@@ -107,7 +107,7 @@ public class Todo implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", title=").append(title);
         sb.append(", count=").append(count);
-        sb.append(", isdelete=").append(isdelete);
+        sb.append(", isDelete=").append(isDelete);
         sb.append(", locked=").append(locked);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

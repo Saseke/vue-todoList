@@ -6,8 +6,8 @@
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="count" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="isDelete" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="locked" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="locked" javaType="java.lang.Boolean" jdbcType="BIT" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, count, isDelete, locked
+    id, title, count, is_delete, locked
   </sql>
   <select id="selectByExample" parameterType="com.yoke.todoList.pojo.TodoExample" resultMap="BaseResultMap">
     select
@@ -106,10 +106,10 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into todos (title, count, isDelete, 
+    insert into todos (title, count, is_delete, 
       locked)
-    values (#{title,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{isdelete,jdbcType=TINYINT}, 
-      #{locked,jdbcType=TINYINT})
+    values (#{title,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{isDelete,jdbcType=BIT}, 
+      #{locked,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.yoke.todoList.pojo.Todo">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -123,8 +123,8 @@
       <if test="count != null">
         count,
       </if>
-      <if test="isdelete != null">
-        isDelete,
+      <if test="isDelete != null">
+        is_delete,
       </if>
       <if test="locked != null">
         locked,
@@ -137,11 +137,11 @@
       <if test="count != null">
         #{count,jdbcType=INTEGER},
       </if>
-      <if test="isdelete != null">
-        #{isdelete,jdbcType=TINYINT},
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
       </if>
       <if test="locked != null">
-        #{locked,jdbcType=TINYINT},
+        #{locked,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -163,11 +163,11 @@
       <if test="record.count != null">
         count = #{record.count,jdbcType=INTEGER},
       </if>
-      <if test="record.isdelete != null">
-        isDelete = #{record.isdelete,jdbcType=TINYINT},
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIT},
       </if>
       <if test="record.locked != null">
-        locked = #{record.locked,jdbcType=TINYINT},
+        locked = #{record.locked,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -179,8 +179,8 @@
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       count = #{record.count,jdbcType=INTEGER},
-      isDelete = #{record.isdelete,jdbcType=TINYINT},
-      locked = #{record.locked,jdbcType=TINYINT}
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      locked = #{record.locked,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -194,11 +194,11 @@
       <if test="count != null">
         count = #{count,jdbcType=INTEGER},
       </if>
-      <if test="isdelete != null">
-        isDelete = #{isdelete,jdbcType=TINYINT},
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIT},
       </if>
       <if test="locked != null">
-        locked = #{locked,jdbcType=TINYINT},
+        locked = #{locked,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -207,8 +207,8 @@
     update todos
     set title = #{title,jdbcType=VARCHAR},
       count = #{count,jdbcType=INTEGER},
-      isDelete = #{isdelete,jdbcType=TINYINT},
-      locked = #{locked,jdbcType=TINYINT}
+      is_delete = #{isDelete,jdbcType=BIT},
+      locked = #{locked,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

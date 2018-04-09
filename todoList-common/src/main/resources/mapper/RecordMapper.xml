@@ -4,16 +4,16 @@
   <resultMap id="BaseResultMap" type="com.yoke.todoList.pojo.Record">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="isdelete" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="checked" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="checked" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="todo_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.yoke.todoList.pojo.Record">
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="isdelete" javaType="java.lang.Byte" jdbcType="TINYINT" />
-      <arg column="checked" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="is_delete" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="checked" javaType="java.lang.Boolean" jdbcType="BIT" />
       <arg column="todo_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="text" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
     </constructor>
@@ -77,7 +77,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, isdelete, checked, todo_id
+    id, is_delete, checked, todo_id
   </sql>
   <sql id="Blob_Column_List">
     text
@@ -136,9 +136,9 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into record (isdelete, checked, todo_id, 
+    insert into record (is_delete, checked, todo_id, 
       text)
-    values (#{isdelete,jdbcType=TINYINT}, #{checked,jdbcType=TINYINT}, #{todoId,jdbcType=INTEGER}, 
+    values (#{isDelete,jdbcType=BIT}, #{checked,jdbcType=BIT}, #{todoId,jdbcType=INTEGER}, 
       #{text,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yoke.todoList.pojo.Record">
@@ -147,8 +147,8 @@
     </selectKey>
     insert into record
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="isdelete != null">
-        isdelete,
+      <if test="isDelete != null">
+        is_delete,
       </if>
       <if test="checked != null">
         checked,
@@ -161,11 +161,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="isdelete != null">
-        #{isdelete,jdbcType=TINYINT},
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BIT},
       </if>
       <if test="checked != null">
-        #{checked,jdbcType=TINYINT},
+        #{checked,jdbcType=BIT},
       </if>
       <if test="todoId != null">
         #{todoId,jdbcType=INTEGER},
@@ -187,11 +187,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.isdelete != null">
-        isdelete = #{record.isdelete,jdbcType=TINYINT},
+      <if test="record.isDelete != null">
+        is_delete = #{record.isDelete,jdbcType=BIT},
       </if>
       <if test="record.checked != null">
-        checked = #{record.checked,jdbcType=TINYINT},
+        checked = #{record.checked,jdbcType=BIT},
       </if>
       <if test="record.todoId != null">
         todo_id = #{record.todoId,jdbcType=INTEGER},
@@ -207,8 +207,8 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update record
     set id = #{record.id,jdbcType=INTEGER},
-      isdelete = #{record.isdelete,jdbcType=TINYINT},
-      checked = #{record.checked,jdbcType=TINYINT},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      checked = #{record.checked,jdbcType=BIT},
       todo_id = #{record.todoId,jdbcType=INTEGER},
       text = #{record.text,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -218,8 +218,8 @@
   <update id="updateByExample" parameterType="map">
     update record
     set id = #{record.id,jdbcType=INTEGER},
-      isdelete = #{record.isdelete,jdbcType=TINYINT},
-      checked = #{record.checked,jdbcType=TINYINT},
+      is_delete = #{record.isDelete,jdbcType=BIT},
+      checked = #{record.checked,jdbcType=BIT},
       todo_id = #{record.todoId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -228,11 +228,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.yoke.todoList.pojo.Record">
     update record
     <set>
-      <if test="isdelete != null">
-        isdelete = #{isdelete,jdbcType=TINYINT},
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BIT},
       </if>
       <if test="checked != null">
-        checked = #{checked,jdbcType=TINYINT},
+        checked = #{checked,jdbcType=BIT},
       </if>
       <if test="todoId != null">
         todo_id = #{todoId,jdbcType=INTEGER},
@@ -245,16 +245,16 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yoke.todoList.pojo.Record">
     update record
-    set isdelete = #{isdelete,jdbcType=TINYINT},
-      checked = #{checked,jdbcType=TINYINT},
+    set is_delete = #{isDelete,jdbcType=BIT},
+      checked = #{checked,jdbcType=BIT},
       todo_id = #{todoId,jdbcType=INTEGER},
       text = #{text,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yoke.todoList.pojo.Record">
     update record
-    set isdelete = #{isdelete,jdbcType=TINYINT},
-      checked = #{checked,jdbcType=TINYINT},
+    set is_delete = #{isDelete,jdbcType=BIT},
+      checked = #{checked,jdbcType=BIT},
       todo_id = #{todoId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

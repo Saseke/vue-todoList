@@ -164,63 +164,63 @@ public class RecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteIsNull() {
-            addCriterion("isdelete is null");
+        public Criteria andIsDeleteIsNull() {
+            addCriterion("is_delete is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteIsNotNull() {
-            addCriterion("isdelete is not null");
+        public Criteria andIsDeleteIsNotNull() {
+            addCriterion("is_delete is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteEqualTo(Byte value) {
-            addCriterion("isdelete =", value, "isdelete");
+        public Criteria andIsDeleteEqualTo(Boolean value) {
+            addCriterion("is_delete =", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteNotEqualTo(Byte value) {
-            addCriterion("isdelete <>", value, "isdelete");
+        public Criteria andIsDeleteNotEqualTo(Boolean value) {
+            addCriterion("is_delete <>", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteGreaterThan(Byte value) {
-            addCriterion("isdelete >", value, "isdelete");
+        public Criteria andIsDeleteGreaterThan(Boolean value) {
+            addCriterion("is_delete >", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteGreaterThanOrEqualTo(Byte value) {
-            addCriterion("isdelete >=", value, "isdelete");
+        public Criteria andIsDeleteGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_delete >=", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteLessThan(Byte value) {
-            addCriterion("isdelete <", value, "isdelete");
+        public Criteria andIsDeleteLessThan(Boolean value) {
+            addCriterion("is_delete <", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteLessThanOrEqualTo(Byte value) {
-            addCriterion("isdelete <=", value, "isdelete");
+        public Criteria andIsDeleteLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_delete <=", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteIn(List<Byte> values) {
-            addCriterion("isdelete in", values, "isdelete");
+        public Criteria andIsDeleteIn(List<Boolean> values) {
+            addCriterion("is_delete in", values, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteNotIn(List<Byte> values) {
-            addCriterion("isdelete not in", values, "isdelete");
+        public Criteria andIsDeleteNotIn(List<Boolean> values) {
+            addCriterion("is_delete not in", values, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteBetween(Byte value1, Byte value2) {
-            addCriterion("isdelete between", value1, value2, "isdelete");
+        public Criteria andIsDeleteBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_delete between", value1, value2, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteNotBetween(Byte value1, Byte value2) {
-            addCriterion("isdelete not between", value1, value2, "isdelete");
+        public Criteria andIsDeleteNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_delete not between", value1, value2, "isDelete");
             return (Criteria) this;
         }
 
@@ -234,52 +234,52 @@ public class RecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andCheckedEqualTo(Byte value) {
+        public Criteria andCheckedEqualTo(Boolean value) {
             addCriterion("checked =", value, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedNotEqualTo(Byte value) {
+        public Criteria andCheckedNotEqualTo(Boolean value) {
             addCriterion("checked <>", value, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedGreaterThan(Byte value) {
+        public Criteria andCheckedGreaterThan(Boolean value) {
             addCriterion("checked >", value, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedGreaterThanOrEqualTo(Byte value) {
+        public Criteria andCheckedGreaterThanOrEqualTo(Boolean value) {
             addCriterion("checked >=", value, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedLessThan(Byte value) {
+        public Criteria andCheckedLessThan(Boolean value) {
             addCriterion("checked <", value, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedLessThanOrEqualTo(Byte value) {
+        public Criteria andCheckedLessThanOrEqualTo(Boolean value) {
             addCriterion("checked <=", value, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedIn(List<Byte> values) {
+        public Criteria andCheckedIn(List<Boolean> values) {
             addCriterion("checked in", values, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedNotIn(List<Byte> values) {
+        public Criteria andCheckedNotIn(List<Boolean> values) {
             addCriterion("checked not in", values, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedBetween(Byte value1, Byte value2) {
+        public Criteria andCheckedBetween(Boolean value1, Boolean value2) {
             addCriterion("checked between", value1, value2, "checked");
             return (Criteria) this;
         }
 
-        public Criteria andCheckedNotBetween(Byte value1, Byte value2) {
+        public Criteria andCheckedNotBetween(Boolean value1, Boolean value2) {
             addCriterion("checked not between", value1, value2, "checked");
             return (Criteria) this;
         }

@@ -34,6 +34,7 @@ public class TodoController {
     @GetMapping("/list")
     public TodoListResult<Object> list() {
         TodoExample todoExample = new TodoExample();
+        todoExample.or().andIsDeleteEqualTo(false);
         RecordExample recordExample = new RecordExample();
         List<TodoDto> todoDtoList = todoService.selectByExample(todoExample).stream()
                 .map(todo -> {
@@ -75,12 +76,43 @@ public class TodoController {
         Todo todo = todoService.selectByPrimaryKey(id);
         Record record = new Record();
         record.setTodoId(id);
-        record.setChecked((byte) 1);
-        record.setIsdelete((byte) 1);
+        record.setChecked((false));
+        record.setIsDelete(false);
         record.setText(text);
         todo.setCount(todo.getCount() + 1);
         todoService.updateByPrimaryKeySelective(todo);
         recordService.insert(record);
         return new ResultUtil<>().setData("success");
+    }
+
+    @PostMapping("/editTodo")
+    public TodoListResult<Object> updateTodo(@RequestBody Todo todo) {
+        LOGGER.info(todo.toString());
+        Todo oldTodo = null;
+        try {
+            oldTodo = todoService.selectByPrimaryKey(todo.getId());
+        } catch (NullPointerException e) {
+            LOGGER.error("更新的todo没有id信息{}", e.getMessage());
+        }
+        if (oldTodo == null) {
+            LOGGER.info("没有查询得到该todo的信息");
+            return new ResultUtil<>().setData(null);
+        }
+        int count = todoService.updateByPrimaryKeySelective(todo);
+        LOGGER.info("执行更新todo，影响的数据条数{}", count);
+        return new ResultUtil<>().setData(null);
+    }
+
+    @PostMapping("/editRecord")
+    public TodoListResult<Object> updateRecord(@RequestBody Record record) {
+        LOGGER.info(record.toString());
+        Record oldRecord = recordService.selectByPrimaryKey(record.getId());
+        if (oldRecord == null) {
+            LOGGER.info("没有查询得到该record的信息");
+            return new ResultUtil<>().setData(null);
+        }
+        int count = recordService.updateByPrimaryKey(record);
+        LOGGER.info("执行更新record，影响的数据的条数{}", count);
+        return new ResultUtil<>().setData(null);
     }
 }

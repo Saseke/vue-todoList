@@ -294,63 +294,63 @@ public class TodoExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteIsNull() {
-            addCriterion("isDelete is null");
+        public Criteria andIsDeleteIsNull() {
+            addCriterion("is_delete is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteIsNotNull() {
-            addCriterion("isDelete is not null");
+        public Criteria andIsDeleteIsNotNull() {
+            addCriterion("is_delete is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteEqualTo(Byte value) {
-            addCriterion("isDelete =", value, "isdelete");
+        public Criteria andIsDeleteEqualTo(Boolean value) {
+            addCriterion("is_delete =", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteNotEqualTo(Byte value) {
-            addCriterion("isDelete <>", value, "isdelete");
+        public Criteria andIsDeleteNotEqualTo(Boolean value) {
+            addCriterion("is_delete <>", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteGreaterThan(Byte value) {
-            addCriterion("isDelete >", value, "isdelete");
+        public Criteria andIsDeleteGreaterThan(Boolean value) {
+            addCriterion("is_delete >", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteGreaterThanOrEqualTo(Byte value) {
-            addCriterion("isDelete >=", value, "isdelete");
+        public Criteria andIsDeleteGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_delete >=", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteLessThan(Byte value) {
-            addCriterion("isDelete <", value, "isdelete");
+        public Criteria andIsDeleteLessThan(Boolean value) {
+            addCriterion("is_delete <", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteLessThanOrEqualTo(Byte value) {
-            addCriterion("isDelete <=", value, "isdelete");
+        public Criteria andIsDeleteLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_delete <=", value, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteIn(List<Byte> values) {
-            addCriterion("isDelete in", values, "isdelete");
+        public Criteria andIsDeleteIn(List<Boolean> values) {
+            addCriterion("is_delete in", values, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteNotIn(List<Byte> values) {
-            addCriterion("isDelete not in", values, "isdelete");
+        public Criteria andIsDeleteNotIn(List<Boolean> values) {
+            addCriterion("is_delete not in", values, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteBetween(Byte value1, Byte value2) {
-            addCriterion("isDelete between", value1, value2, "isdelete");
+        public Criteria andIsDeleteBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_delete between", value1, value2, "isDelete");
             return (Criteria) this;
         }
 
-        public Criteria andIsdeleteNotBetween(Byte value1, Byte value2) {
-            addCriterion("isDelete not between", value1, value2, "isdelete");
+        public Criteria andIsDeleteNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_delete not between", value1, value2, "isDelete");
             return (Criteria) this;
         }
 
@@ -364,52 +364,52 @@ public class TodoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLockedEqualTo(Byte value) {
+        public Criteria andLockedEqualTo(Boolean value) {
             addCriterion("locked =", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedNotEqualTo(Byte value) {
+        public Criteria andLockedNotEqualTo(Boolean value) {
             addCriterion("locked <>", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedGreaterThan(Byte value) {
+        public Criteria andLockedGreaterThan(Boolean value) {
             addCriterion("locked >", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedGreaterThanOrEqualTo(Byte value) {
+        public Criteria andLockedGreaterThanOrEqualTo(Boolean value) {
             addCriterion("locked >=", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedLessThan(Byte value) {
+        public Criteria andLockedLessThan(Boolean value) {
             addCriterion("locked <", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedLessThanOrEqualTo(Byte value) {
+        public Criteria andLockedLessThanOrEqualTo(Boolean value) {
             addCriterion("locked <=", value, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedIn(List<Byte> values) {
+        public Criteria andLockedIn(List<Boolean> values) {
             addCriterion("locked in", values, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedNotIn(List<Byte> values) {
+        public Criteria andLockedNotIn(List<Boolean> values) {
             addCriterion("locked not in", values, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedBetween(Byte value1, Byte value2) {
+        public Criteria andLockedBetween(Boolean value1, Boolean value2) {
             addCriterion("locked between", value1, value2, "locked");
             return (Criteria) this;
         }
 
-        public Criteria andLockedNotBetween(Byte value1, Byte value2) {
+        public Criteria andLockedNotBetween(Boolean value1, Boolean value2) {
             addCriterion("locked not between", value1, value2, "locked");
             return (Criteria) this;
         }
