@@ -13,24 +13,4 @@
         <module>todoList-web</module>
         <module>todoList-common</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.7</version>
-        </dependency>
-
-        <!--alibaba tool-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.44</version>
-        </dependency>
-        <dependency>
-            <groupId>com.esotericsoftware.reflectasm</groupId>
-            <artifactId>reflectasm</artifactId>
-            <version>1.07</version>
-        </dependency>
-    </dependencies>
 </project>
