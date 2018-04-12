@@ -28,7 +28,6 @@
     created() {
       getTodoList({}).then(res => {
         this.itemDtos = res.data.data;
-        console.log(res.data.data);
       });
     },
     methods: {

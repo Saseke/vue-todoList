@@ -26,8 +26,6 @@ export const addRecord = params => {
   }).then(res => res.data);
 };
 export const editTodo = params => {
-  console.log(params.todo);
-  console.log(params.todo.id);
   return axios({
     method: 'post',
     url: URL + '/todo/editTodo',

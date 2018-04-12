@@ -50,8 +50,7 @@ public class TodoController {
 
     @PostMapping("/add")
     public TodoListResult<Object> add() {
-        Todo todo = new Todo();
-        todo.setTitle("newLine");
+        Todo todo = new Todo("new Line", 0, false, false);
         TodoDto todoDto = new TodoDto();
         todoDto.setTodo(null);
         todoService.insert(todo);
@@ -99,7 +98,6 @@ public class TodoController {
             return new ResultUtil<>().setData(null);
         }
         int count = todoService.updateByPrimaryKeySelective(todo);
-        LOGGER.info("执行更新todo，影响的数据条数{}", count);
         return new ResultUtil<>().setData(null);
     }
 
@@ -111,8 +109,12 @@ public class TodoController {
             LOGGER.info("没有查询得到该record的信息");
             return new ResultUtil<>().setData(null);
         }
-        int count = recordService.updateByPrimaryKey(record);
-        LOGGER.info("执行更新record，影响的数据的条数{}", count);
+        if (record.getIsDelete()) {
+            Todo todo = todoService.selectByPrimaryKey(record.getTodoId());
+            todo.setCount(todo.getCount() - 1);
+            todoService.updateByPrimaryKey(todo);
+        }
+        recordService.updateByPrimaryKeyWithBLOBs(record);
         return new ResultUtil<>().setData(null);
     }
 }

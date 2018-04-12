@@ -23,6 +23,13 @@ public class Todo implements Serializable {
         this.locked = locked;
     }
 
+    public Todo(String title, Integer count, Boolean isDelete, Boolean locked) {
+        this.title = title;
+        this.count = count;
+        this.isDelete = isDelete;
+        this.locked = locked;
+    }
+
     public Todo() {
         super();
     }

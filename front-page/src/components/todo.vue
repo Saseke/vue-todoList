@@ -1,5 +1,5 @@
 <template>
-  <div class="page lists-show">
+  <div class="page lists-show" v-show="!todo.isDelete">
     <!-- 头部模块 -->
     <nav>
       <!-- 当用户浏览车窗口尺寸小于40em时候，显示手机端的菜单图标 -->
@@ -13,7 +13,6 @@
           </a>
         </div>
       </div>
-
       <div class="nav-group" @click="$store.dispatch('updateMenu')" v-show="!isUpdate">
         <!-- 在菜单的图标下面添加updateMenu时间，他可以直接调用vuex actions.js里面的updateMenu方法 -->
         <a class="nav-item">
@@ -29,33 +28,33 @@
         <!-- count:数量 绑定代办单项熟练-->
       </h1>
       <!-- 右边显示删除图标和锁定图标的模块 -->
-      <div class="nav-group right">
+      <div class="nav-group right" v-show="!isUpdate">
         <div class="options-web">
           <a class=" nav-item" @click="onlock">
             <!-- cicon-lock锁定的图标
-            icon-unlock：非锁定的图标
-            -->
+                                                    icon-unlock：非锁定的图标
+                                                    -->
             <span class="icon-lock" v-if="todo.locked"></span>
             <span class="icon-unlock" v-else>
             </span>
           </a>
-          <a class=" nav-item" @click="onDelete">
-            <span class="icon-trash">
+          <a class="nav-item">
+            <span class="icon-trash" @click="onDelete">
             </span>
           </a>
         </div>
       </div>
       <!-- 用户新增代办事项的input模块 -->
       <div class=" form todo-new input-symbol">
-        <!-- 绑定disabled值，当todo.locked为绑定的时候，禁止input输入 -->
-        <input type="text" v-model="text" placeholder='请输入' @keyup.enter="onAdd"/>
+        <!-- 绑定disabled值，当todo.locked为绑定的时候，禁止input输入,双向绑定text,和监听input的回车事件@keyup.enter -->
+        <input type="text" v-model="text" placeholder='请输入' @keyup.enter="onAdd" :disabled="todo.locked" />
         <span class="icon-add"></span>
       </div>
     </nav>
     <!-- 列表主体模块 -->
     <div class="content-scrollable list-items">
-      <div v-for="item in items">
-        <item :item="item"></item>
+      <div v-for="(item,index) in items">
+        <item :item="item" :index="index" :id="todo.id" :init="init" :locked="todo.locked"></item>
       </div>
     </div>
   </div>
@@ -91,8 +90,6 @@
         // 获取到$route下的param下的id
         const ID = this.$route.params.id;
         getTodo({id: ID}).then(res => {
-          console.log("request请求得到的数据");
-          console.log(res.data.data.todo);
           let {
             id, title, count, isDelete, locked
           } = res.data.data.todo;
@@ -105,7 +102,6 @@
             locked: locked
           };
           this.items = records;
-          console.log(this.todo);
         })
       },
       onAdd() {
